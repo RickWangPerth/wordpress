@@ -1,0 +1,24 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    platform: linux/arm64
+    ports:
+      - "8080:80"
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data:/var/www/html
+
+  db:
+    image: mariadb:latest
+    container_name: wordpress_db
+    platform: linux/arm64
+    volumes:
+      - db_data:/var/lib/mysql
+    env_file:
+      - .env
+
+volumes:
+  wordpress_data:
+  db_data:
